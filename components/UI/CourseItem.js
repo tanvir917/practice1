@@ -13,15 +13,15 @@ const CourseItem = props => {
         <View style={styles.product} >
             <View style={styles.touchable}>
                 <TouchableCmp onPress={props.onViewDetail} useForeground>
-                    <View style={styles.container}>
-                        <Text style={styles.title}>{props.title}</Text>
+                    <View>
+                        <View style={styles.container}>
+                            <Text style={styles.title}>{props.title}</Text>
+                        </View>
+                        <Button 
+                            title='Update Product' 
+                            onPress={props.onUpdate}
+                        ></Button>
                     </View>
-                    {/* <Button 
-                        title='Update Product' 
-                        onPress={() => props.navigation.navigate('EditProductScreen', {
-                            productId: prodId
-                        })}
-                    ></Button> */}
                 </TouchableCmp>
             </View>
         </View>

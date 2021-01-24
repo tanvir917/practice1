@@ -52,7 +52,7 @@ const AuthNavigator = createStackNavigator({
 }); 
 
 const MainNavigator = createSwitchNavigator({
-    Auth:AuthNavigator ,
+    //Auth:AuthNavigator ,
     Shop: ShopNavigator
 })
 

@@ -7,8 +7,8 @@ import CourseItem from '../components/UI/CourseItem';
 const ProductsOverviewScreen = props => {
     const products = useSelector(state => state.products.availableProducts);
     const dispatch = useDispatch();
-    // console.log('============products========================');
-    // console.log(products);
+    // console.log('============props========================');
+    // console.log(props);
     // console.log('====================================');
 
     useEffect(() => {
@@ -38,12 +38,18 @@ const ProductsOverviewScreen = props => {
                 data={products} 
                 keyExtractor={item => item.id} 
                 renderItem={itemData => <CourseItem 
+                    prodId={itemData.item.id}
                     title={itemData.item.title}
                     onViewDetail={() => {
                         props.navigation.navigate('ProductDetail', { 
                             productId: itemData.item.id ,
                             productTitle: itemData.item.title
                         });
+                    }}
+                    onUpdate={() => {
+                        props.navigation.navigate('EditProductScreen', {
+                                productId: itemData.item.id
+                        })
                     }}
                 />} 
             />
