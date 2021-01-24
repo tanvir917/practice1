@@ -15,6 +15,7 @@ export default (state = initialState, action) => {
         case CREATE_PRODUCT: 
             const newProduct = new Courses(
                 action.productData.id, 
+                action.productData.subscriberId,
                 action.productData.title,
                 action.productData.videoUrl,
             );

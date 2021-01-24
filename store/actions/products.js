@@ -24,7 +24,7 @@ export const fetchProducts = () => {
     }
 }
 
-export const createProduct = (title, videoUrl) => { 
+export const createProduct = (title, videoUrl, subscriberId = []) => { 
     return async dispatch => { 
         //any async code
         const response = await fetch('https://practice1-78cf4-default-rtdb.firebaseio.com/products.json', {
@@ -33,6 +33,7 @@ export const createProduct = (title, videoUrl) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                subscriberId,
                 title,
                 videoUrl,
             })
@@ -44,6 +45,7 @@ export const createProduct = (title, videoUrl) => {
             type: CREATE_PRODUCT, 
             productData: {
                 id: resData.name,
+                subscriberId,
                 title,
                 videoUrl,
             }

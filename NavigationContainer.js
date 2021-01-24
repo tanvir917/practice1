@@ -8,6 +8,7 @@ import AuthScreen from './screens/AuthScreen'
 import ProductsOverviewScreen from './screens/ProductsOverviewScreen'
 import ProductDetailScreen from './screens/ProductDetail';
 import Colors from './constants/Colors'
+import EditProductScreen from './screens/EditProductScreen';
 
 const ProductsNavigator = createStackNavigator(
 {
@@ -15,13 +16,13 @@ const ProductsNavigator = createStackNavigator(
     ProductDetail: ProductDetailScreen,
 }, );
 
-// const AdminNavigator = createStackNavigator({
-//     UserProducts: UserProductsScreen,
-// },);
+const AdminNavigator = createStackNavigator({
+    EditProductScreen: EditProductScreen,
+},);
 
 const ShopNavigator = createDrawerNavigator({
     Products: ProductsNavigator,
-    //Admin: AdminNavigator
+    Admin: AdminNavigator
 }, {
     contentOptions: {
         activeTintColor: '#c2185b'

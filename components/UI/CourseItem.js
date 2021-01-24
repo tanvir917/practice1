@@ -16,6 +16,12 @@ const CourseItem = props => {
                     <View style={styles.container}>
                         <Text style={styles.title}>{props.title}</Text>
                     </View>
+                    {/* <Button 
+                        title='Update Product' 
+                        onPress={() => props.navigation.navigate('EditProductScreen', {
+                            productId: prodId
+                        })}
+                    ></Button> */}
                 </TouchableCmp>
             </View>
         </View>
@@ -42,7 +48,7 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100%',
+        height: '80%',
     },
     title: {
         fontFamily: 'open-sans-bold',

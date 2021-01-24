@@ -93,11 +93,10 @@ const AuthScreen = props => {
 
     return (
         <KeyboardAvoidingView 
-            behavior='padding'
             keyboardVerticalOffset={50}
             style={styles.screen}
         >
-            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Card style={styles.authContainer}>
                 <ScrollView>
                     <Input 
@@ -156,11 +155,6 @@ AuthScreen.navigationOptions = {
 const styles = StyleSheet.create({
     screen: { 
         flex:1
-    },
-    gradient: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
     },
     authContainer: {
         width: '80%',
