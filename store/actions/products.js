@@ -1,6 +1,7 @@
 import Product from '../../model';
 
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const SET_PRODUCTS = 'SET_PRODUCTS';
 
 export const fetchProducts = () => {
@@ -24,7 +25,7 @@ export const fetchProducts = () => {
     }
 }
 
-export const createProduct = (title, videoUrl, subscriberId = []) => { 
+export const createProduct = (title, videoUrl = []) => { 
     return async dispatch => { 
         //any async code
         const response = await fetch('https://practice1-78cf4-default-rtdb.firebaseio.com/products.json', {
@@ -33,7 +34,6 @@ export const createProduct = (title, videoUrl, subscriberId = []) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                subscriberId,
                 title,
                 videoUrl,
             })
@@ -45,10 +45,42 @@ export const createProduct = (title, videoUrl, subscriberId = []) => {
             type: CREATE_PRODUCT, 
             productData: {
                 id: resData.name,
-                subscriberId,
                 title,
                 videoUrl,
             }
         }); 
     };
 };
+
+export const updateProduct = (id, title, videoUrl) => {
+    return async (dispatch, getState) => {
+        //const token = getState().auth.token;
+        //console.log(getState());
+        const response = await fetch(
+            `https://practice1-78cf4-default-rtdb.firebaseio.com/products/${id}.json`, 
+            {
+                method: 'PATCH',//patch will update
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title,
+                    videoUrl
+                })
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error('Something went wrong!');
+        }
+
+        dispatch( { 
+            type: UPDATE_PRODUCT, 
+            pid: id,
+            productData: {
+                title,
+                videoUrl
+            } 
+        });
+    }
+}; 

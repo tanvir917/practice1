@@ -8,16 +8,16 @@ from 'react-native-media-controls';
 
  const ProductDetailScreen = props => {
   const productId = props.navigation.getParam('productId');
+  const isAdmin = props.navigation.getParam('isAdmin');
   const selectedProduct = useSelector(state => 
       state.products.availableProducts.find(prod => prod.id === productId)
   );
   const {subscriberId} = selectedProduct;
   const userId = useSelector(state => state.auth.userId);
   function checkValue(arr) {
-    console.log(arr);
+    //console.log(arr);
     return arr === userId;
   }
-
   // console.log('===============selectedproduct=====================');
   // console.log(subscriberId);
   // console.log(subscriberId.some(checkValue));
@@ -90,7 +90,7 @@ from 'react-native-media-controls';
   const onSeeking = (currentTime) => setCurrentTime(currentTime);
      return (
         <View style={{flex: 1}}>
-        {subscriberId.some(checkValue)
+        {isAdmin || subscriberId && subscriberId.some(checkValue)
         ? (
           <View style={{flex: 1}}>
             <Video
@@ -124,7 +124,7 @@ from 'react-native-media-controls';
             />
           </View>
         ) : (
-          <Text style={styles.text}>Not Authenticated</Text>
+          <Text style={styles.text}>Not Subscribed</Text>
         )}
         
         </View>

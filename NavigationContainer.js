@@ -9,6 +9,8 @@ import ProductsOverviewScreen from './screens/ProductsOverviewScreen'
 import ProductDetailScreen from './screens/ProductDetail';
 import Colors from './constants/Colors'
 import EditProductScreen from './screens/EditProductScreen';
+import dataCreate from './screens/dataCreate';
+import * as authActions from './store/actions/auth'
 
 const ProductsNavigator = createStackNavigator(
 {
@@ -18,6 +20,7 @@ const ProductsNavigator = createStackNavigator(
 
 const AdminNavigator = createStackNavigator({
     EditProductScreen: EditProductScreen,
+    //dataCreate: dataCreate
 },);
 
 const ShopNavigator = createDrawerNavigator({
@@ -38,7 +41,7 @@ const ShopNavigator = createDrawerNavigator({
                         color={Colors.primary} 
                         onPress={() => {
                             dispatch(authActions.logout());
-                            //props.navigation.navigate('Auth');
+                            props.navigation.navigate('Auth');
                         }} 
                     />
                 </SafeAreaView>
@@ -52,7 +55,7 @@ const AuthNavigator = createStackNavigator({
 }); 
 
 const MainNavigator = createSwitchNavigator({
-    //Auth:AuthNavigator ,
+    Auth:AuthNavigator ,
     Shop: ShopNavigator
 })
 
